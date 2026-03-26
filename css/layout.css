@@ -1,0 +1,193 @@
+/* layout.css — ИСПРАВЛЕНО
+   Убраны: .top-bar и все его правила — они живут в top-bar.css
+   Убраны: дублирующие transition на body и длинный список элементов (теперь только там где нужно)
+*/
+
+/* ── Контейнер ───────────────────────────────────────────────────────────── */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.container-wide {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section {
+    padding: 40px 0;
+}
+
+/* ── Hero ────────────────────────────────────────────────────────────────── */
+.hero {
+    padding: 30px 0 60px;
+    background: var(--gradient-hero);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 80%, rgba(108, 99, 255, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0, 201, 183, 0.2) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.hero .container {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+.hero h1 {
+    margin-bottom: 24px;
+    color: white;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.hero p {
+    font-size: var(--font-size-lg);
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 40px;
+    animation: fadeInUp 0.6s ease-out 0.2s both;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ── Типографика ─────────────────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+}
+
+h1 { font-size: var(--font-size-4xl); }
+h2 { font-size: var(--font-size-3xl); color: var(--text-primary); margin-bottom: 2rem; }
+h3 { font-size: var(--font-size-2xl); margin-bottom: 1.5rem; }
+h4 { font-size: var(--font-size-xl); }
+
+p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────────── */
+.main-footer {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+    padding: 60px 0 30px;
+    margin-top: 60px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-column h3 {
+    margin-bottom: 20px;
+    font-size: var(--font-size-lg);
+    color: var(--text-primary);
+}
+
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: 12px; }
+.footer-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color var(--transition-fast), transform var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+.footer-links a:hover,
+.footer-links a:focus {
+    color: var(--primary-blue);
+    outline: none;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 30px;
+    border-top: 1px solid var(--border-color);
+}
+
+.copyright {
+    color: var(--text-tertiary);
+    font-size: var(--font-size-sm);
+}
+
+.footer-legal {
+    display: flex;
+    gap: 24px;
+}
+
+.footer-legal a {
+    color: var(--text-tertiary);
+    font-size: var(--font-size-sm);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+.footer-legal a:hover { color: var(--primary-blue); }
+
+/* ── Анимации ────────────────────────────────────────────────────────────── */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Смена темы ──────────────────────────────────────────────────────────── */
+/* ИСПРАВЛЕНО: вместо * { transition } — только те элементы, где это видно */
+body,
+.main-footer,
+.stat-card,
+.visual-card,
+.feature-item,
+.feature-card {
+    transition:
+        background-color var(--transition-slow),
+        color var(--transition-slow),
+        border-color var(--transition-slow);
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .container { padding: 0 16px; }
+    .section   { padding: 30px 0; }
+    .hero      { padding: 20px 0 40px; }
+    .hero h1   { font-size: var(--font-size-3xl); }
+    h2         { font-size: var(--font-size-2xl); }
+
+    .footer-content  { grid-template-columns: 1fr; gap: 30px; }
+    .footer-bottom   { flex-direction: column; gap: 20px; text-align: center; }
+    .footer-legal    { flex-wrap: wrap; justify-content: center; gap: 16px; }
+}
+
+@media (max-width: 480px) {
+    .hero h1   { font-size: var(--font-size-2xl); }
+    .section   { padding: 20px 0; }
+}

@@ -1,0 +1,31 @@
+/* main.css — ИСПРАВЛЕНО
+   Убран: @import 'accessibility-toolbar.css' — классов из него нет в HTML (мёртвый файл)
+   Добавлен: фикс флага Leaflet
+   Порядок импортов: сначала базовые, потом компоненты
+*/
+
+/* ── База ────────────────────────────────────────────────────────────────── */
+@import url('reset.css');
+@import url('variables.css');
+@import url('layout.css');
+@import url('top-bar.css');
+
+/* ── Компоненты ──────────────────────────────────────────────────────────── */
+@import url('button.css');
+@import url('card.css');
+@import url('features.css');
+@import url('language-switcher.css');
+@import url('account-menu.css');
+@import url('auth-modal.css');
+
+/* ── Карта ───────────────────────────────────────────────────────────────── */
+@import url('map-core.css');
+@import url('map-search.css');
+
+/* ── Переводчик ──────────────────────────────────────────────────────────── */
+@import url('translator-panel.css');
+
+/* ── Фикс флага Leaflet (появился в v1.9+) ───────────────────────────────── */
+.leaflet-attribution-flag {
+    display: none !important;
+}
